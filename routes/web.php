@@ -21,3 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('master',function (){
     return view('backend.dashboard');
 });
+Route::group(['middleware'=>'auth','namespace'=>'Backend'],function (){
+
+    Route::group(['prefix'=>'event','as'=>'event.'],function (){
+       Route::get('new','EventController')->name('new');
+    });
+});
