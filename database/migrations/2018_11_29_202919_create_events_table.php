@@ -21,6 +21,7 @@ class CreateEventsTable extends Migration
             $table->date('reminder_date');
             $table->time('reminder_time')->nullable();
             $table->string('description')->nullable();
+            $table->boolean('is_complete')->default(false);
             $table->timestamps();
         });
     }
