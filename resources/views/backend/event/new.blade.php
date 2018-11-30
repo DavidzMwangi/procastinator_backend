@@ -76,6 +76,23 @@
                                                             <input type="text" name="description" placeholder="Description" class="form-control">
                                                         </div>
                                                     </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6 col-sm-12 col-xs-6">
+                                                            <label for="users">Users</label>
+                                                            <select id="users" class="form-control" name="user_id">
+                                                                <option selected disabled>Please select a user</option>
+
+                                                                @foreach($users as $user)
+                                                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                                                    @endforeach
+                                                            </select>
+                                                        </div>
+
+
+
+
+                                                    </div>
                                                 </div>
 
 

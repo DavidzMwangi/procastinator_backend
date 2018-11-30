@@ -22,7 +22,10 @@ class CreateEventsTable extends Migration
             $table->time('reminder_time')->nullable();
             $table->string('description')->nullable();
             $table->boolean('is_complete')->default(false);
+            $table->unsignedInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

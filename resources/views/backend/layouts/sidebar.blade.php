@@ -4,7 +4,7 @@
             <a class="has-arrow" href="#" aria-expanded="false"><i class="fa big-icon fa-envelope icon-wrap"></i> <span class="mini-click-non">Event</span></a>
             <ul class="submenu-angle" aria-expanded="false">
                 <li><a title="Inbox" href="{{route('event.new')}}"><i class="fa fa-plus sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">New Event</span></a></li>
-                <li><a title="View Mail" href="mailbox-view.html"><i class="fa fa-television sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">All Events</span></a></li>
+                <li><a title="View Mail" href="{{route('event.all_events')}}"><i class="fa fa-television sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">All Events</span></a></li>
                 {{--<li><a title="Compose Mail" href="mailbox-compose.html"><i class="fa fa-paper-plane sub-icon-mg" aria-hidden="true"></i> <span class="mini-sub-pro">Compose Mail</span></a></li>--}}
             </ul>
         </li>

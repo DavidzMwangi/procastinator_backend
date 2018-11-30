@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Event;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -12,7 +13,7 @@ class EventController extends Controller
     //
     public function __invoke()
     {
-        return view('backend.event.new');
+        return view('backend.event.new')->withUsers(User::all());
     }
 
     public function newEvent(Request $request)
@@ -23,7 +24,8 @@ class EventController extends Controller
                 'event_time'=>'required',
                 'reminder_date'=>'required',
                 'reminder_time'=>'required',
-                'description'=>'required'
+                'description'=>'required',
+                'user_id'=>'required'
             ]);
 
             if ($validator->fails()){
@@ -38,10 +40,17 @@ class EventController extends Controller
             $event->reminder_date=$request->input('reminder_date');
             $event->reminder_time=$request->input('reminder_time');
             $event->description=$request->input('description');
+            $event->user_id=$request->input('user_id');
             $event->save();
 
 
             return redirect()->route('event.new');
 
+    }
+
+    public function allEvents()
+    {
+        $events=Event::all();
+        return view('backend.event.all')->withEvents($events);
     }
 }
