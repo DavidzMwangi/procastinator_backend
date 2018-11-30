@@ -25,5 +25,6 @@ Route::group(['middleware'=>'auth','namespace'=>'Backend'],function (){
 
     Route::group(['prefix'=>'event','as'=>'event.'],function (){
        Route::get('new','EventController')->name('new');
+       Route::post('new_event','EventController@newEvent')->name('new_event');
     });
 });
