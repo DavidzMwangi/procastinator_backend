@@ -28,4 +28,9 @@ Route::group(['middleware'=>'auth','namespace'=>'Backend'],function (){
        Route::post('new_event','EventController@newEvent')->name('new_event');
        Route::get('all_events','EventController@allEvents')->name('all_events');
     });
+
+    Route::group(['prefix'=>'users','as'=>'users.'],function (){
+       Route::get('all_users','UserController')->name('all_users');
+
+    });
 });

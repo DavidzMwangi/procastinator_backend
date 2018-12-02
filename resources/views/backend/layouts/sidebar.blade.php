@@ -10,6 +10,7 @@
         </li>
 
 
+        <li><a title="Landing Page" href="{{route('users.all_users')}}" aria-expanded="false"><i class="fa fa-users icon-wrap sub-icon-mg" aria-hidden="true"></i> <span class="mini-click-non">Users</span></a></li>
 
         {{--<li class="active">--}}
             {{--<a class="has-arrow" href="index.html">--}}
