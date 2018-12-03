@@ -28,4 +28,8 @@ Route::group(['namespace'=>'Api'],function () {
         return $request->user();
     });
 
+    Route::group(['middleware'=>'auth:api'],function (){
+       Route::post('new_event','EventController@newEvent');
+       Route::get('all_events','EventController@allEvents');
+    });
 });
