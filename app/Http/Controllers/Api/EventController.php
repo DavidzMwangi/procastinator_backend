@@ -38,4 +38,12 @@ class EventController extends Controller
     {
         return response()->json(Event::where('user_id',Auth::id())->get());
     }
+
+    public function toggleEvent(Event $event)
+    {
+        $event->is_complete=false;
+        $event->save();
+
+        return response()->json($event);
+    }
 }

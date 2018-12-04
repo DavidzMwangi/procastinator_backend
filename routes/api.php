@@ -22,7 +22,7 @@ Route::group(['namespace'=>'Api'],function () {
         Route::post('login', 'LoginController@login');
         Route::post('register', 'RegisterController@register');
 
-        Route::post('recover_password', 'Login2Controller@recoverPassword');
+        Route::post('recover_password', 'LoginController@recoverPassword');
     });
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
@@ -31,5 +31,6 @@ Route::group(['namespace'=>'Api'],function () {
     Route::group(['middleware'=>'auth:api'],function (){
        Route::post('new_event','EventController@newEvent');
        Route::get('all_events','EventController@allEvents');
+       Route::get('toggle_event/{event}','EventController@toggleEvent');
     });
 });
