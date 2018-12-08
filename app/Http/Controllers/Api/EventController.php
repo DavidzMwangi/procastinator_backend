@@ -20,7 +20,11 @@ class EventController extends Controller
 
         ]);
 
-        $event=new Event();
+        if ($request->has('event_id')){
+            $event=$request->input('event_id');
+        }else{
+            $event=new Event();
+        }
         $event->name=$request->input('name');
         $event->event_date=$request->input('event_date');
         $event->event_time=$request->input('event_time');
