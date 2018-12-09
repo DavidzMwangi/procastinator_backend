@@ -13,28 +13,45 @@ class EventController extends Controller
     public function newEvent(Request $request)
     {
 
-        $this->validate($request,[
-            'name'=>'required',
-            'event_date'=>'required',
-            'reminder_date'=>'required',
+        $data = json_decode($request->getContent());
+        foreach ($data->values as $item) {
+            $data_item=$item->nameValuePairs;
+            if ($data_item->is_synced==false){
+                //create a new instance here for the new event
+                $event=new Event();
 
+            }else{
+                //the event already exist and the user is updating the record
+                $event=Event::find($data_item->id);
+            }
+
+            $event->name=$data_item->name;
+            $event->event_date=$data_item->event_date;
+            $event->event_time=$data_item->event_time;
+            $event->reminder_date=$data_item->reminder_date;
+            $event->reminder_date=$data_item->reminder_date;
+            $event->description=$data_item->description;
+            $event->is_synced=true;
+            $event->is_complete=$data_item->is_complete;
+            $event->has_update=false;
+            $event->user_id=Auth::id();
+            $event->save();
+
+
+
+        }
+//        $this->validate($request,[
+//            'name'=>'required',
+//            'event_date'=>'required',
+//            'reminder_date'=>'required',
+//
+//        ]);
+
+
+        return response()->json([
+            'Response' => 'Success'
         ]);
 
-        if ($request->has('event_id')){
-            $event=$request->input('event_id');
-        }else{
-            $event=new Event();
-        }
-        $event->name=$request->input('name');
-        $event->event_date=$request->input('event_date');
-        $event->event_time=$request->input('event_time');
-        $event->reminder_date=$request->input('reminder_date');
-        $event->reminder_date=$request->reminder_date;
-        $event->description=$request->description;
-        $event->user_id=Auth::id();
-        $event->save();
-
-        return response()->json($event);
     }
 
 
@@ -45,7 +62,8 @@ class EventController extends Controller
 
     public function toggleEvent(Event $event)
     {
-        $event->is_complete=false;
+        $event->is_complete=true;
+        $event->has_update=false;
         $event->save();
 
         return response()->json($event);
