@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller
 {
@@ -13,12 +15,23 @@ class EventController extends Controller
     public function newEvent(Request $request)
     {
 
+
         $data = json_decode($request->getContent());
+
+
+        return response()->json([
+            'Response' => $data->values
+        ]);
+        /*
         foreach ($data->values as $item) {
+
             $data_item=$item->nameValuePairs;
+
+
             if ($data_item->is_synced==false){
                 //create a new instance here for the new event
                 $event=new Event();
+
 
             }else{
                 //the event already exist and the user is updating the record
@@ -40,18 +53,14 @@ class EventController extends Controller
 
 
         }
-//        $this->validate($request,[
-//            'name'=>'required',
-//            'event_date'=>'required',
-//            'reminder_date'=>'required',
-//
-//        ]);
+
 
 
         return response()->json([
             'Response' => 'Success'
         ]);
 
+        */
     }
 
 

@@ -32,5 +32,9 @@ Route::group(['namespace'=>'Api'],function () {
        Route::post('new_event','EventController@newEvent');
        Route::get('all_events','EventController@allEvents');
        Route::get('toggle_event/{event}','EventController@toggleEvent');
+       Route::get('auth_info',function (){
+           return response()->json(\Illuminate\Support\Facades\Auth::user());
+//          return json_encode(\Illuminate\Support\Facades\Auth::user());
+       });
     });
 });
