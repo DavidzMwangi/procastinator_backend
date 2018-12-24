@@ -36,5 +36,7 @@ Route::group(['namespace'=>'Api'],function () {
            return response()->json(\Illuminate\Support\Facades\Auth::user());
 //          return json_encode(\Illuminate\Support\Facades\Auth::user());
        });
+       
+       Route::get('delete_event/{event}','EventController@deleteEvent');
     });
 });

@@ -19,10 +19,11 @@ class EventController extends Controller
         $data = json_decode($request->getContent());
 
 
-        return response()->json([
-            'Response' => $data->values
-        ]);
-        /*
+//        return response()->json([
+////            'Response' => Event::find(1)
+//            'Response' => $data->values
+//        ]);
+
         foreach ($data->values as $item) {
 
             $data_item=$item->nameValuePairs;
@@ -42,7 +43,7 @@ class EventController extends Controller
             $event->event_date=$data_item->event_date;
             $event->event_time=$data_item->event_time;
             $event->reminder_date=$data_item->reminder_date;
-            $event->reminder_date=$data_item->reminder_date;
+            $event->reminder_time=$data_item->reminder_time;
             $event->description=$data_item->description;
             $event->is_synced=true;
             $event->is_complete=$data_item->is_complete;
@@ -60,7 +61,7 @@ class EventController extends Controller
             'Response' => 'Success'
         ]);
 
-        */
+
     }
 
 
@@ -76,5 +77,11 @@ class EventController extends Controller
         $event->save();
 
         return response()->json($event);
+    }
+
+    public function deleteEvent(Event $event)
+    {
+        $event->delete();
+         $this->allEvents();
     }
 }
